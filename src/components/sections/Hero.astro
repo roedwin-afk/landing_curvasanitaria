@@ -1,0 +1,257 @@
+---
+---
+
+<section class="hero" id="inicio">
+  <div class="container hero__inner">
+
+    <div class="hero__content">
+      <div class="hero__badge">
+        <span>🇭🇳</span> Distribución en todo Honduras
+      </div>
+
+      <h1 class="hero__title">
+        Curvas Sanitarias <span>PVC</span> en Honduras
+      </h1>
+
+      <p class="hero__subtitle">
+        Soluciones de ingeniería higiénica para cuartos fríos, laboratorios
+        y plantas industriales. El estándar de calidad B2B en San Pedro Sula
+        y Tegucigalpa.
+      </p>
+
+      <div class="hero__actions">
+        <a href="#catalogo" class="btn btn-primary">
+          Ver Productos
+        </a>
+        <a href="#contacto" class="btn btn-outline">
+          Solicitar Visita
+        </a>
+      </div>
+
+      <div class="hero__stats">
+        <div class="hero__stat">
+          <strong>+200</strong>
+          <span>Proyectos</span>
+        </div>
+        <div class="hero__stat-divider"></div>
+        <div class="hero__stat">
+          <strong>10+</strong>
+          <span>Años de experiencia</span>
+        </div>
+        <div class="hero__stat-divider"></div>
+        <div class="hero__stat">
+          <strong>100%</strong>
+          <span>Grado alimenticio</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__visual">
+      <div class="hero__image-wrapper">
+        <img
+          src="https://images.unsplash.com/photo-1565514020179-026b92b84bb6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80"
+          alt="Planta industrial con acabados sanitarios PVC Honduras"
+          width="600"
+          height="500"
+          loading="eager"
+        />
+      </div>
+      <div class="hero__card hero__card--top">
+        <span>✅</span>
+        <p>Certificado grado alimenticio</p>
+      </div>
+      <div class="hero__card hero__card--bottom">
+        <span>❄️</span>
+        <p>Apto para cuartos fríos</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    background: linear-gradient(160deg, #f8fafc 0%, #ffffff 60%);
+    padding-block: clamp(5rem, 10vw, 9rem);
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 50%;
+    height: 80%;
+    background: radial-gradient(circle, rgba(0, 112, 243, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero__inner {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: var(--space-16);
+    align-items: center;
+  }
+
+  /* Badge */
+  .hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: rgba(0, 112, 243, 0.08);
+    color: var(--color-accent);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-full);
+    margin-bottom: var(--space-6);
+    border: 1px solid rgba(0, 112, 243, 0.15);
+  }
+
+  /* Título */
+  .hero__title {
+    font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+    line-height: 1.05;
+    margin-bottom: var(--space-6);
+    color: var(--color-primary);
+  }
+
+  .hero__title span {
+    color: var(--color-accent);
+  }
+
+  /* Subtítulo */
+  .hero__subtitle {
+    font-size: clamp(var(--text-base), 2vw, var(--text-xl));
+    color: var(--color-text-muted);
+    max-width: 540px;
+    margin-bottom: var(--space-10);
+    line-height: 1.7;
+  }
+
+  /* Botones */
+  .hero__actions {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-12);
+  }
+
+  /* Stats */
+  .hero__stats {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+  }
+
+  .hero__stat strong {
+    display: block;
+    font-size: var(--text-2xl);
+    font-weight: 800;
+    color: var(--color-primary);
+    line-height: 1;
+  }
+
+  .hero__stat span {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin-top: var(--space-1);
+    display: block;
+  }
+
+  .hero__stat-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--color-border);
+    flex-shrink: 0;
+  }
+
+  /* Visual */
+  .hero__visual {
+    position: relative;
+  }
+
+  .hero__image-wrapper {
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-xl);
+    transform: perspective(1200px) rotateY(-6deg) rotateX(2deg);
+    transition: var(--transition);
+  }
+
+  .hero__image-wrapper:hover {
+    transform: perspective(1200px) rotateY(0deg) rotateX(0deg);
+  }
+
+  .hero__image-wrapper img {
+    width: 100%;
+    height: 460px;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Floating cards */
+  .hero__card {
+    position: absolute;
+    background: var(--color-bg);
+    border-radius: var(--radius-md);
+    padding: var(--space-3) var(--space-4);
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-primary);
+    border: 1px solid var(--color-border);
+    white-space: nowrap;
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .hero__card--top {
+    top: -16px;
+    left: -24px;
+    animation-delay: 0s;
+  }
+
+  .hero__card--bottom {
+    bottom: 24px;
+    right: -24px;
+    animation-delay: 2s;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-8px); }
+  }
+
+  /* Responsive */
+  @media (max-width: 968px) {
+    .hero__inner {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .hero__badge {
+      margin-inline: auto;
+    }
+
+    .hero__subtitle {
+      margin-inline: auto;
+    }
+
+    .hero__actions {
+      justify-content: center;
+    }
+
+    .hero__stats {
+      justify-content: center;
+    }
+
+    .hero__visual {
+      display: none;
+    }
+  }
+</style>

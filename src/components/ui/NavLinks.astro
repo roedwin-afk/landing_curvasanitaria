@@ -1,0 +1,80 @@
+---
+interface Props {
+  mobile?: boolean;
+}
+
+const { mobile = false } = Astro.props;
+const base = import.meta.env.BASE_URL;
+
+const links = [
+  { label: 'Productos',     href: `${base}#catalogo`     },
+  { label: 'Beneficios',    href: `${base}#beneficios`   },
+  { label: 'Aplicaciones',  href: `${base}#aplicaciones` },
+  { label: 'Nosotros',      href: `${base}#nosotros`     },
+  { label: 'Contacto',      href: `${base}#contacto`     },
+];
+---
+
+<ul class:list={['nav-links', { 'nav-links--mobile': mobile }]}>
+  {links.map(link => (
+    <li>
+      <a href={link.href} class="nav-link">
+        {link.label}
+      </a>
+    </li>
+  ))}
+</ul>
+
+<style>
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+  }
+
+  .nav-link {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-text-muted);
+    transition: var(--transition);
+    position: relative;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-accent);
+    transition: var(--transition);
+  }
+
+  .nav-link:hover {
+    color: var(--color-primary);
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  /* Variante mobile */
+  .nav-links--mobile {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+
+  .nav-links--mobile .nav-link {
+    font-size: var(--text-xl);
+    font-weight: 600;
+    color: var(--color-primary);
+    padding: var(--space-3) 0;
+    width: 100%;
+  }
+
+  .nav-links--mobile .nav-link::after {
+    display: none;
+  }
+</style>

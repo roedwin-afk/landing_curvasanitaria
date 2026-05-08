@@ -1,0 +1,172 @@
+---
+import NavLinks from "../ui/NavLinks.astro";
+import MobileMenu from "./MobileMenu.astro";
+
+const base = import.meta.env.BASE_URL;
+---
+
+<header class="navbar" id="navbar">
+    <div class="container navbar__inner">
+        <a href={base} class="navbar__logo" aria-label="EQUIPROH - Inicio">
+            EQUI<span>PROH</span>
+        </a>
+
+        <nav class="navbar__nav" aria-label="Navegación principal">
+            <NavLinks />
+        </nav>
+
+        <div class="navbar__actions">
+            <a
+                href="https://wa.me/504XXXXXXXXX"
+                class="btn btn-primary"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Cotizar Ahora
+            </a>
+
+            <button
+                class="navbar__burger"
+                id="burger-btn"
+                aria-label="Abrir menú"
+                aria-expanded="false"
+                aria-controls="mobile-menu"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<MobileMenu />
+
+<script>
+    const navbar = document.getElementById("navbar");
+    const burger = document.getElementById("burger-btn");
+
+    // Scroll effect
+    window.addEventListener("scroll", () => {
+        navbar?.classList.toggle("navbar--scrolled", window.scrollY > 20);
+    });
+
+    // Burger toggle — el estado real lo maneja MobileMenu.astro
+    burger?.addEventListener("click", () => {
+        const expanded = burger.getAttribute("aria-expanded") === "true";
+        burger.setAttribute("aria-expanded", String(!expanded));
+        burger.classList.toggle("is-active");
+    });
+</script>
+
+<style>
+    .navbar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        height: 72px;
+        display: flex;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid transparent;
+        transition: var(--transition);
+    }
+
+    .navbar--scrolled {
+        border-bottom-color: var(--color-border);
+        box-shadow: var(--shadow-sm);
+    }
+
+    .navbar__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-8);
+    }
+
+    .navbar__logo {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--color-primary);
+        text-transform: uppercase;
+        letter-spacing: -0.03em;
+        flex-shrink: 0;
+    }
+
+    .navbar__logo span {
+        color: var(--color-accent);
+    }
+
+    .navbar__nav {
+        display: flex;
+        align-items: center;
+    }
+
+    .navbar__actions {
+        display: flex;
+        align-items: center;
+        gap: var(--space-4);
+        flex-shrink: 0;
+    }
+
+    /* Burger button */
+    .navbar__burger {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 40px;
+        height: 40px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: var(--space-2);
+        border-radius: var(--radius-sm);
+        transition: var(--transition);
+    }
+
+    .navbar__burger:hover {
+        background-color: var(--color-bg-soft);
+    }
+
+    .navbar__burger span {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background-color: var(--color-primary);
+        border-radius: 2px;
+        transition: var(--transition);
+        transform-origin: center;
+    }
+
+    /* Burger animado cuando está activo */
+    .navbar__burger.is-active span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    .navbar__burger.is-active span:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+
+    .navbar__burger.is-active span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .navbar__nav {
+            display: none;
+        }
+
+        .navbar__burger {
+            display: flex;
+        }
+
+        .btn {
+            display: none;
+        }
+    }
+</style>
