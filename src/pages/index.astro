@@ -1,6 +1,10 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/sections/Hero.astro";
+import Benefits from "../components/sections/Benefits.astro";
+import Catalog from "../components/sections/Catalog.astro";
+import Applications from '../components/sections/Applications.astro';
+import About from '../components/sections/About.astro';
 ---
 
 <BaseLayout
@@ -8,5 +12,9 @@ import Hero from "../components/sections/Hero.astro";
 	description="Líderes en curvas sanitarias PVC en Honduras. Perfiles higiénicos para cuartos fríos."
 >
 	<Hero />
+	<Benefits />
+	<Catalog />
+	<Applications />
+	<About />
 	<h1 style="padding: 4rem 2rem;">Hola desde EQUIPROH 👋</h1>
 </BaseLayout>

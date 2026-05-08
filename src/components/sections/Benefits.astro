@@ -1,0 +1,134 @@
+---
+import { ShieldCheck, Thermometer, Zap, ClipboardList, Wrench, Droplets } from 'lucide-astro';
+
+const iconProps = { size: 32, color: "var(--color-accent)", strokeWidth: 1.5 };
+---
+
+<section class="benefits section-padding" id="beneficios">
+  <div class="container">
+
+    <div class="section-header">
+      <h2>¿Por qué elegir EQUIPROH?</h2>
+      <p>
+        Cada detalle de nuestros perfiles sanitarios está diseñado para
+        cumplir los estándares más exigentes de la industria alimentaria.
+      </p>
+    </div>
+
+    <div class="benefits__grid">
+
+      <div class="benefit-card">
+        <div class="benefit-card__icon"><Droplets {...iconProps} /></div>
+        <h3 class="benefit-card__title">Inocuidad Total</h3>
+        <p class="benefit-card__desc">Diseño sin ángulos muertos que facilita la desinfección profunda exigida por SENASA y normativas internacionales.</p>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-card__icon"><ShieldCheck {...iconProps} /></div>
+        <h3 class="benefit-card__title">PVC Grado Industrial</h3>
+        <p class="benefit-card__desc">Material de alta densidad resistente a impactos, químicos de limpieza y humedad constante en planta.</p>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-card__icon"><Thermometer {...iconProps} /></div>
+        <h3 class="benefit-card__title">Baja Temperatura</h3>
+        <p class="benefit-card__desc">Optimizado para operar en temperaturas de congelación sin fracturas ni pérdida de sellado.</p>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-card__icon"><Zap {...iconProps} /></div>
+        <h3 class="benefit-card__title">Instalación Ágil</h3>
+        <p class="benefit-card__desc">Sistema modular que reduce tiempos de parada en planta. Compatible con paneles aislantes estándar.</p>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-card__icon"><ClipboardList {...iconProps} /></div>
+        <h3 class="benefit-card__title">Cumplimiento Normativo</h3>
+        <p class="benefit-card__desc">Cumple con normativas FDA, HACCP y SENASA para plantas que buscan certificaciones internacionales.</p>
+      </div>
+
+      <div class="benefit-card">
+        <div class="benefit-card__icon"><Wrench {...iconProps} /></div>
+        <h3 class="benefit-card__title">Soporte Técnico</h3>
+        <p class="benefit-card__desc">Asesoría personalizada para ingenieros y contratistas. Especificaciones técnicas disponibles.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .benefits {
+    background: var(--color-bg);
+  }
+
+  .benefits__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+
+  .benefit-card {
+    padding: var(--space-10);
+    border-radius: var(--radius-lg);
+    background: var(--color-bg-soft);
+    border: 1px solid transparent;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .benefit-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 0;
+    background: var(--color-accent);
+    transition: var(--transition);
+  }
+
+  .benefit-card:hover {
+    background: var(--color-bg);
+    border-color: var(--color-accent);
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .benefit-card:hover::before {
+    height: 100%;
+  }
+
+  .benefit-card__icon {
+    margin-bottom: var(--space-6);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .benefit-card__title {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: var(--space-3);
+  }
+
+  .benefit-card__desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 968px) {
+    .benefits__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 580px) {
+    .benefits__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,222 @@
+---
+import { ArrowRight } from 'lucide-astro';
+
+const iconProps = { size: 16, strokeWidth: 2 };
+
+const products = [
+  {
+    code: 'CO100',
+    name: 'Curva Sanitaria Principal',
+    description: 'Perfil de 4000mm, Blanco RAL 9010. Radio de curvatura ideal para encuentros pared-piso en cuartos fríos.',
+    image: '/images/co100.jpg',
+    cta: 'Cotizar Honduras',
+  },
+  {
+    code: 'COPF 100',
+    name: 'Base de Soporte Perfil',
+    description: 'Sistema de anclaje para curva sanitaria. Garantiza fijación mecánica en paneles de cámara frigorífica.',
+    image: '/images/copf100.jpg',
+    cta: 'Ficha Técnica',
+  },
+  {
+    code: 'RIN-51223',
+    name: 'Rinconera Interna 3P',
+    description: 'Accesorio triple pared para la unión perfecta de tres esquinas internas. Máxima higiene en vértices.',
+    image: '/images/rin51223.jpg',
+    cta: 'Solicitar Precio',
+  },
+  {
+    code: 'CO2VE 100',
+    name: 'Esquinero Externo PVC',
+    description: 'Protección contra impactos en esquinas salientes. Diseño aerodinámico de fácil limpieza.',
+    image: '/images/co2ve100.jpg',
+    cta: 'Ver Disponibilidad',
+  },
+  {
+    code: 'TAP-47379',
+    name: 'Tapeta de Terminación',
+    description: 'Tapa final para perfiles de 100mm. Sella los extremos para evitar entrada de residuos y humedad.',
+    image: '/images/tap47379.jpg',
+    cta: 'Consultar Stock',
+  },
+];
+---
+
+<section class="catalog section-padding" id="catalogo">
+  <div class="container">
+
+    <div class="section-header">
+      <h2>Portafolio Técnico</h2>
+      <p>Componentes certificados para acabados sanitarios de alto nivel en plantas industriales.</p>
+    </div>
+
+    <div class="catalog__grid">
+      {products.map((product) => (
+        <article class="product-card">
+
+          <div class="product-card__img">
+            <img
+              src={product.image}
+              alt={product.name}
+              width={400}
+              height={240}
+              loading="lazy"
+              onerror="this.style.display='none'"
+            />
+            <div class="product-card__placeholder">
+              <span>{product.code}</span>
+            </div>
+          </div>
+
+          <div class="product-card__body">
+            <span class="product-card__code">{product.code}</span>
+            <h3 class="product-card__name">{product.name}</h3>
+            <p class="product-card__desc">{product.description}</p>
+            
+            <a  href="https://wa.me/504XXXXXXXXX"
+              class="product-card__cta"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {product.cta}
+              <ArrowRight {...iconProps} />
+            </a>
+          </div>
+
+        </article>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .catalog {
+    background: var(--color-bg-soft);
+  }
+
+  .catalog__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-8);
+  }
+
+  /* Card */
+  .product-card {
+    background: var(--color-bg);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition);
+  }
+
+  .product-card:hover {
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+  }
+
+  /* Imagen */
+  .product-card__img {
+    position: relative;
+    height: 220px;
+    background: var(--color-bg-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .product-card__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: var(--space-6);
+    mix-blend-mode: multiply;
+    transition: var(--transition);
+  }
+
+  .product-card:hover .product-card__img img {
+    transform: scale(1.05);
+  }
+
+  /* Placeholder cuando no hay imagen */
+  .product-card__placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-bg-soft), #eef2f7);
+  }
+
+  .product-card__placeholder span {
+    font-size: var(--text-2xl);
+    font-weight: 800;
+    color: var(--color-border);
+    letter-spacing: -0.03em;
+  }
+
+  /* Body */
+  .product-card__body {
+    padding: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .product-card__code {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--space-2);
+  }
+
+  .product-card__name {
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: var(--space-3);
+  }
+
+  .product-card__desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    flex: 1;
+    margin-bottom: var(--space-6);
+  }
+
+  .product-card__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-accent);
+    transition: var(--transition);
+    margin-top: auto;
+  }
+
+  .product-card__cta:hover {
+    gap: var(--space-3);
+    color: var(--color-accent-hover);
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .catalog__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 580px) {
+    .catalog__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
