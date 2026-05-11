@@ -16,8 +16,6 @@ const features = [
 const cities = [
   { name: 'Tegucigalpa', region: 'Distrito Central' },
   { name: 'San Pedro Sula', region: 'Cortés' },
-  { name: 'Choloma', region: 'Zona Franca' },
-  { name: 'La Ceiba', region: 'Atlántida' },
 ];
 ---
 
@@ -27,7 +25,7 @@ const cities = [
     <div class="about__grid">
 
       <!-- Columna izquierda: Texto SEO -->
-      <div class="about__content">
+      <div class="about__content" data-reveal="fade-right">
         <span class="about__label">Quiénes somos</span>
         <h2 class="about__title">
           Especialistas en Curvas Sanitarias en Honduras
@@ -57,7 +55,7 @@ const cities = [
       </div>
 
       <!-- Columna derecha: Cobertura + Contacto -->
-      <div class="about__sidebar">
+      <div class="about__sidebar" data-reveal="fade-left" data-reveal-delay="200">
 
         <div class="about__coverage">
           <h3 class="about__sidebar-title">Cobertura Nacional</h3>

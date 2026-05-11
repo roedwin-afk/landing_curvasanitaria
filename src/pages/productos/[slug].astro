@@ -1,0 +1,535 @@
+---
+import { Image } from "astro:assets";
+import { ArrowLeft, MessageCircle, FileText, CheckCircle } from "lucide-astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { products, getProductBySlug } from "../../data/products";
+
+// Importar todas las imágenes del catálogo
+import co100 from "../../assets/images/CO100-1.png";
+import coaf100 from "../../assets/images/COAF-100-65.png";
+import rin51223 from "../../assets/images/RIN-51223.png";
+import co2ve100 from "../../assets/images/CO2VE-100.png";
+import tap47379 from "../../assets/images/TAP-47379.png";
+
+// Mapa imagen filename → import
+const imageMap: Record<string, ImageMetadata> = {
+  "CO100-1.png": co100,
+  "COAF-100-65.png": coaf100,
+  "RIN-51223.png": rin51223,
+  "CO2VE-100.png": co2ve100,
+  "TAP-47379.png": tap47379,
+};
+
+export async function getStaticPaths() {
+  return products.map((product) => ({
+    params: { slug: product.slug },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+
+if (!product) {
+  return Astro.redirect("/404");
+}
+
+const productImage = imageMap[product.imageKey];
+
+// Productos relacionados (todos excepto el actual)
+const relatedProducts = products.filter((p) => p.slug !== product.slug).slice(0, 3);
+
+const base = import.meta.env.BASE_URL;
+
+
+---
+
+<BaseLayout title={product.metaTitle} description={product.metaDescription}>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb-bar">
+    <div class="container breadcrumb-inner">
+      <a href={base} class="breadcrumb-link">Inicio</a>
+      <span class="breadcrumb-sep">/</span>
+      <a href={`${base}#catalogo`} class="breadcrumb-link">Productos</a>
+      <span class="breadcrumb-sep">/</span>
+      <span class="breadcrumb-current">{product.code}</span>
+    </div>
+  </div>
+
+  <!-- HERO DEL PRODUCTO -->
+  <section class="product-hero section-padding">
+    <div class="container">
+      <div class="product-hero__grid">
+
+        <!-- Imagen -->
+        <div class="product-hero__img-wrapper" data-reveal="fade-right">
+          <div class="product-hero__img-bg">
+            {productImage && (
+              <Image
+                src={productImage}
+                alt={product.name + " - EQUIPROH Honduras"}
+                width={560}
+                height={480}
+                format="webp"
+                loading="eager"
+                class="product-hero__img"
+              />
+            )}
+          </div>
+          <div class="product-hero__badge">
+            <CheckCircle size={14} strokeWidth={2} />
+            Grado alimenticio certificado
+          </div>
+        </div>
+
+        <!-- Info -->
+        <div class="product-hero__info" data-reveal="fade-left" data-reveal-delay="100">
+          <span class="product-hero__code">{product.code}</span>
+          <h1 class="product-hero__title">{product.name}</h1>
+          <p class="product-hero__desc">{product.fullDescription}</p>
+
+          <div class="product-hero__actions">
+            
+            <a  href={"https://wa.me/504XXXXXXXXX?text=Hola, me interesa el producto " + product.code + " - " + product.name}
+              class="btn btn-whatsapp"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <MessageCircle size={18} strokeWidth={2} />
+              {product.cta}
+            </a>
+            <a href="mailto:ventas.hn@equiproh.com" class="btn btn-outline">
+              <FileText size={18} strokeWidth={2} />
+              Solicitar Cotización
+            </a>
+          </div>
+
+          <a href="/#catalogo" class="product-hero__back">
+            <ArrowLeft size={16} strokeWidth={2} />
+            Ver todos los productos
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ESPECIFICACIONES + APLICACIONES -->
+  <section class="product-details section-padding">
+    <div class="container">
+      <div class="product-details__grid">
+
+        <!-- Especificaciones técnicas -->
+        <div class="specs-card" data-reveal="fade-up">
+          <h2 class="specs-card__title">Especificaciones Técnicas</h2>
+          <div class="specs-table">
+            {product.specs.map((spec) => (
+              <div class="specs-row">
+                <span class="specs-label">{spec.label}</span>
+                <span class="specs-value">{spec.value}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Aplicaciones -->
+        <div class="apps-card" data-reveal="fade-up" data-reveal-delay="100">
+          <h2 class="apps-card__title">Aplicaciones</h2>
+          <ul class="apps-list">
+            {product.applications.map((app) => (
+              <li class="apps-item">
+                <CheckCircle size={16} strokeWidth={2} class="apps-icon" />
+                {app}
+              </li>
+            ))}
+          </ul>
+
+          <div class="apps-cta">
+            <p>¿Tienes un proyecto en Honduras?</p>
+            
+            <a  href={"https://wa.me/504XXXXXXXXX"}
+              class="btn btn-primary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <MessageCircle size={16} strokeWidth={2} />
+              Hablar con un asesor
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTOS RELACIONADOS -->
+  <section class="related section-padding">
+    <div class="container">
+      <div class="section-header" data-reveal="fade-up">
+        <h2>Productos Relacionados</h2>
+        <p>Complementa tu instalación con el sistema completo EQUIPROH.</p>
+      </div>
+
+      <div class="related__grid">
+        {relatedProducts.map((rp) => {
+          const rpImage = imageMap[rp.imageKey];
+          return (
+            <a href={`${base}productos/${rp.slug}`} class="related-card" data-reveal="fade-up">
+              <div class="related-card__img">
+                {rpImage && (
+                  <Image
+                    src={rpImage}
+                    alt={rp.name}
+                    width={280}
+                    height={200}
+                    format="webp"
+                    loading="lazy"
+                    class="related-card__photo"
+                  />
+                )}
+              </div>
+              <div class="related-card__body">
+                <span class="related-card__code">{rp.code}</span>
+                <h3 class="related-card__name">{rp.name}</h3>
+                <p class="related-card__desc">{rp.shortDescription}</p>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* Breadcrumb */
+  .breadcrumb-bar {
+    background: var(--color-bg-soft);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-3) 0;
+  }
+
+  .breadcrumb-inner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+  }
+
+  .breadcrumb-link {
+    color: var(--color-text-muted);
+    transition: var(--transition);
+  }
+
+  .breadcrumb-link:hover {
+    color: var(--color-accent);
+  }
+
+  .breadcrumb-sep {
+    color: var(--color-border);
+  }
+
+  .breadcrumb-current {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  /* Hero producto */
+  .product-hero {
+    background: var(--color-bg);
+  }
+
+  .product-hero__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-16);
+    align-items: center;
+  }
+
+  .product-hero__img-wrapper {
+    position: relative;
+  }
+
+  .product-hero__img-bg {
+    background: var(--color-bg-soft);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-12);
+    min-height: 420px;
+  }
+
+  .product-hero__img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+  }
+
+  .product-hero__badge {
+    position: absolute;
+    bottom: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    padding: var(--space-2) var(--space-5);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    white-space: nowrap;
+    box-shadow: var(--shadow-md);
+  }
+
+  .product-hero__code {
+    display: inline-block;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: var(--space-3);
+    background: rgba(0, 112, 243, 0.08);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(0, 112, 243, 0.15);
+  }
+
+  .product-hero__title {
+    font-size: clamp(var(--text-3xl), 4vw, var(--text-5xl));
+    line-height: 1.05;
+    margin-bottom: var(--space-6);
+    color: var(--color-primary);
+  }
+
+  .product-hero__desc {
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    margin-bottom: var(--space-10);
+  }
+
+  .product-hero__actions {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-8);
+  }
+
+  .product-hero__back {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    transition: var(--transition);
+  }
+
+  .product-hero__back:hover {
+    color: var(--color-accent);
+    gap: var(--space-3);
+  }
+
+  /* Detalles */
+  .product-details {
+    background: var(--color-bg-soft);
+  }
+
+  .product-details__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+  }
+
+  .specs-card,
+  .apps-card {
+    background: var(--color-bg);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    padding: var(--space-10);
+  }
+
+  .specs-card__title,
+  .apps-card__title {
+    font-size: var(--text-xl);
+    color: var(--color-primary);
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-4);
+    border-bottom: 2px solid var(--color-bg-soft);
+  }
+
+  .specs-table {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .specs-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid var(--color-bg-soft);
+    gap: var(--space-4);
+  }
+
+  .specs-row:last-child {
+    border-bottom: none;
+  }
+
+  .specs-label {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    font-weight: 500;
+  }
+
+  .specs-value {
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--color-primary);
+    text-align: right;
+  }
+
+  .apps-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-bottom: var(--space-8);
+  }
+
+  .apps-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .apps-item :global(svg) {
+    color: var(--color-accent);
+    flex-shrink: 0;
+  }
+
+  .apps-cta {
+    background: var(--color-bg-soft);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+    text-align: center;
+  }
+
+  .apps-cta p {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-4);
+    font-weight: 500;
+  }
+
+  /* Relacionados */
+  .related {
+    background: var(--color-bg);
+  }
+
+  .related__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+
+  .related-card {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--color-bg);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+  }
+
+  .related-card:hover {
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+  }
+
+  .related-card__img {
+    height: 180px;
+    background: var(--color-bg-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-6);
+  }
+
+  .related-card__photo {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    transition: var(--transition);
+  }
+
+  .related-card:hover .related-card__photo {
+    transform: scale(1.05);
+  }
+
+  .related-card__body {
+    padding: var(--space-6);
+  }
+
+  .related-card__code {
+    display: inline-block;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--space-2);
+  }
+
+  .related-card__name {
+    font-size: var(--text-base);
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: var(--space-2);
+  }
+
+  .related-card__desc {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  /* Responsive */
+  @media (max-width: 968px) {
+    .product-hero__grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-10);
+    }
+
+    .product-details__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .related__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 580px) {
+    .product-hero__actions {
+      flex-direction: column;
+    }
+
+    .related__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

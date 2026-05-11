@@ -1,0 +1,269 @@
+---
+import { MessageCircle, Mail, Phone } from "lucide-astro";
+
+const iconProps = { size: 20, strokeWidth: 2 };
+---
+
+<section class="cta section-padding" id="contacto">
+    <div class="container">
+        <div class="cta__box" data-reveal="scale">
+            <!-- Fondo decorativo -->
+            <div class="cta__bg-decoration"></div>
+
+            <div class="cta__inner">
+                <div class="cta__content">
+                    <span class="cta__label">¿Listo para comenzar?</span>
+                    <h2 class="cta__title">
+                        Lleve su planta al <br />siguiente nivel
+                    </h2>
+                    <p class="cta__subtitle">
+                        Contáctenos hoy mismo para recibir una propuesta formal
+                        de curvas y perfiles sanitarios PVC para su proyecto en
+                        Honduras.
+                    </p>
+                </div>
+
+                <div class="cta__actions">
+                    <a
+                        href="https://wa.me/504XXXXXXXXX"
+                        class="cta__btn cta__btn--whatsapp"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <MessageCircle {...iconProps} />
+                        WhatsApp
+                    </a>
+
+                    <a
+                        href="mailto:ventas.hn@equiproh.com"
+                        class="cta__btn cta__btn--email"
+                    >
+                        <Mail {...iconProps} />
+                        Enviar Correo
+                    </a>
+
+                    <a href="tel:+504XXXXXXXX" class="cta__btn cta__btn--phone">
+                        <Phone {...iconProps} />
+                        Llamar Ahora
+                    </a>
+                </div>
+
+                <div class="cta__trust">
+                    <div class="cta__trust-item">
+                        <strong>+200</strong>
+                        <span>Proyectos completados</span>
+                    </div>
+                    <div class="cta__trust-divider"></div>
+                    <div class="cta__trust-item">
+                        <strong>48hrs</strong>
+                        <span>Tiempo de respuesta</span>
+                    </div>
+                    <div class="cta__trust-divider"></div>
+                    <div class="cta__trust-item">
+                        <strong>100%</strong>
+                        <span>Satisfacción garantizada</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .cta {
+        background: var(--color-bg-soft);
+    }
+
+    .cta__box {
+        position: relative;
+        background: var(--color-primary);
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        padding: clamp(3rem, 8vw, 6rem) clamp(2rem, 6vw, 5rem);
+    }
+
+    /* Decoración de fondo */
+    .cta__bg-decoration {
+        position: absolute;
+        top: -30%;
+        right: -10%;
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        background: radial-gradient(
+            circle,
+            rgba(0, 112, 243, 0.3) 0%,
+            transparent 70%
+        );
+        pointer-events: none;
+    }
+
+    .cta__box::after {
+        content: "";
+        position: absolute;
+        bottom: -20%;
+        left: -5%;
+        width: 350px;
+        height: 350px;
+        border-radius: 50%;
+        background: radial-gradient(
+            circle,
+            rgba(0, 112, 243, 0.15) 0%,
+            transparent 70%
+        );
+        pointer-events: none;
+    }
+
+    .cta__inner {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: var(--space-10);
+    }
+
+    /* Contenido */
+    .cta__label {
+        display: inline-block;
+        font-size: var(--text-sm);
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.6);
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin-bottom: var(--space-4);
+    }
+
+    .cta__title {
+        font-size: clamp(var(--text-3xl), 5vw, var(--text-5xl));
+        font-weight: 800;
+        color: #ffffff;
+        line-height: 1.1;
+        margin-bottom: var(--space-4);
+    }
+
+    .cta__subtitle {
+        font-size: clamp(var(--text-base), 2vw, var(--text-xl));
+        color: rgba(255, 255, 255, 0.7);
+        max-width: 600px;
+        line-height: 1.7;
+    }
+
+    /* Botones */
+    .cta__actions {
+        display: flex;
+        gap: var(--space-4);
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .cta__btn {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+        padding: 0.9rem 1.8rem;
+        border-radius: var(--radius-sm);
+        font-weight: 600;
+        font-size: var(--text-base);
+        font-family: var(--font-base);
+        text-decoration: none;
+        transition: var(--transition);
+        cursor: pointer;
+        border: 2px solid transparent;
+        white-space: nowrap;
+        width: 12rem;
+    }
+
+    .cta__btn--whatsapp {
+        background-color: var(--color-success);
+        color: #fff;
+        border-color: var(--color-success);
+    }
+
+    .cta__btn--whatsapp:hover {
+        background-color: #1fba59;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
+    }
+
+    .cta__btn--email {
+        background-color: var(--color-accent);
+        color: #fff;
+        border-color: var(--color-accent);
+    }
+
+    .cta__btn--email:hover {
+        background-color: var(--color-accent-hover);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 112, 243, 0.35);
+    }
+
+    .cta__btn--phone {
+        background-color: transparent;
+        color: #fff;
+        border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .cta__btn--phone:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.6);
+        transform: translateY(-2px);
+    }
+
+    /* Trust bar */
+    .cta__trust {
+        display: flex;
+        align-items: center;
+        gap: var(--space-8);
+        padding-top: var(--space-8);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        width: 100%;
+        justify-content: center;
+    }
+
+    .cta__trust-item {
+        text-align: center;
+    }
+
+    .cta__trust-item strong {
+        display: block;
+        font-size: var(--text-2xl);
+        font-weight: 800;
+        color: #ffffff;
+        line-height: 1;
+    }
+
+    .cta__trust-item span {
+        font-size: var(--text-xs);
+        color: rgba(255, 255, 255, 0.5);
+        margin-top: var(--space-1);
+        display: block;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+    }
+
+    .cta__trust-divider {
+        width: 1px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.15);
+        flex-shrink: 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 580px) {
+        .cta__actions {
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .cta__btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .cta__trust {
+            gap: var(--space-4);
+        }
+    }
+</style>

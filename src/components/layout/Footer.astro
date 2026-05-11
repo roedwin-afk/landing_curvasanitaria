@@ -1,3 +1,285 @@
-<footer>
-  <!-- Footer próximamente -->
+---
+import { Image } from "astro:assets";
+import { MapPin, Phone, Mail, ArrowUpRight } from "lucide-astro";
+
+import logo from "../../assets/images/logo-equiproh.svg";
+
+const iconProps = { size: 16, strokeWidth: 1.5 };
+
+const products = [
+  { name: "Curva Sanitaria CO100", href: "/productos/co100" },
+  { name: "Base de Soporte COPF100", href: "/productos/copf-100" },
+  { name: "Rinconera Interna 3P", href: "/productos/rin-51223" },
+  { name: "Esquinero Externo PVC", href: "/productos/co2ve-100" },
+  { name: "Tapeta de Terminación", href: "/productos/tap-47379" },
+];
+
+const sectors = [
+  "Cuartos Fríos",
+  "Industria Cárnica",
+  "Farmacéuticas",
+  "Cocinas Industriales",
+  "Procesadoras de Mariscos",
+  "Zonas Francas",
+];
+---
+
+<footer class="footer">
+  <div class="container">
+    <!-- Grid principal -->
+    <div class="footer__grid">
+      <!-- Columna 1: Marca -->
+      <div class="footer__brand">
+        <a href="/" class="footer__logo"
+          ><Image
+            src={logo}
+            alt="EQUIPROH"
+            width={140}
+            height={40}
+            class="footer-logo__img"
+          /></a
+        >
+        <p class="footer__tagline">
+          Soluciones de ingeniería higiénica para la industria alimentaria e
+          industrial de Honduras.
+        </p>
+        <div class="footer__contact-list">
+          <a
+            href="https://wa.me/504XXXXXXXXX"
+            class="footer__contact-item"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Phone {...iconProps} />
+            +504 XXXX-XXXX
+          </a>
+          <a href="mailto:ventas.hn@equiproh.com" class="footer__contact-item">
+            <Mail {...iconProps} />
+            ventas.hn@equiproh.com
+          </a>
+          <div class="footer__contact-item">
+            <MapPin {...iconProps} />
+            San Pedro Sula, Honduras
+          </div>
+        </div>
+      </div>
+
+      <!-- Columna 2: Productos -->
+      <div class="footer__col">
+        <h4 class="footer__col-title">Productos</h4>
+        <ul class="footer__links">
+          {
+            products.map((product) => (
+              <li>
+                <a href={product.href} class="footer__link">
+                  <ArrowUpRight size={14} strokeWidth={2} />
+                  {product.name}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- Columna 3: Sectores -->
+      <div class="footer__col">
+        <h4 class="footer__col-title">Sectores</h4>
+        <ul class="footer__links">
+          {
+            sectors.map((sector) => (
+              <li>
+                <span class="footer__link footer__link--static">
+                  <ArrowUpRight size={14} strokeWidth={2} />
+                  {sector}
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- Columna 4: Cobertura -->
+      <div class="footer__col">
+        <h4 class="footer__col-title">Cobertura</h4>
+        <ul class="footer__coverage">
+          {
+            [
+              "Tegucigalpa",
+              "San Pedro Sula",
+              "Choloma",
+              "La Ceiba",
+              "El Progreso",
+              "Choluteca",
+            ].map((city) => (
+              <li class="footer__coverage-item">
+                <MapPin size={12} strokeWidth={2} color="var(--color-accent)" />
+                {city}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="footer__bottom">
+      <p class="footer__copy">
+        &copy; {new Date().getFullYear()} EQUIPROH Honduras. Todos los derechos reservados.
+      </p>
+      <p class="footer__legal">Soluciones Industriales Higiénicas · Honduras</p>
+    </div>
+  </div>
 </footer>
+
+<style>
+  .footer {
+    background: var(--color-primary);
+    color: rgba(255, 255, 255, 0.7);
+    padding-top: var(--space-20);
+    padding-bottom: var(--space-8);
+  }
+
+  /* Grid */
+  .footer__grid {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr 1fr 1fr;
+    gap: var(--space-12);
+    padding-bottom: var(--space-12);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* Marca */
+  .footer__logo {
+    display: inline-block;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+    margin-bottom: var(--space-4);
+    text-decoration: none;
+  }
+
+  .footer__logo span {
+    color: var(--color-accent);
+  }
+
+  .footer-logo__img {
+    display: block;
+    filter: brightness(0) invert(1);
+  }
+
+  .footer__tagline {
+    font-size: var(--text-sm);
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: var(--space-6);
+    max-width: 280px;
+  }
+
+  .footer__contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .footer__contact-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: var(--transition);
+  }
+
+  a.footer__contact-item:hover {
+    color: #ffffff;
+  }
+
+  /* Columnas */
+  .footer__col-title {
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--space-6);
+  }
+
+  .footer__links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .footer__link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.55);
+    text-decoration: none;
+    transition: var(--transition);
+    cursor: pointer;
+  }
+
+  .footer__link:not(.footer__link--static):hover {
+    color: #ffffff;
+    gap: var(--space-3);
+  }
+
+  .footer__link--static {
+    cursor: default;
+  }
+
+  /* Cobertura */
+  .footer__coverage {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .footer__coverage-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  /* Bottom */
+  .footer__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: var(--space-8);
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .footer__copy,
+  .footer__legal {
+    font-size: var(--text-xs);
+    color: rgba(255, 255, 255, 0.35);
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .footer__grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-10);
+    }
+  }
+
+  @media (max-width: 580px) {
+    .footer__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .footer__bottom {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>

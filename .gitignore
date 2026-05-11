@@ -3,6 +3,9 @@ dist/
 # generated types
 .astro/
 
+contexto-ia.txt
+mapa-proyecto.js
+
 # dependencies
 node_modules/
 

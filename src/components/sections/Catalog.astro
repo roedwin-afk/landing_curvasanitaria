@@ -1,92 +1,76 @@
 ---
-import { ArrowRight } from 'lucide-astro';
+import { ArrowRight } from "lucide-astro";
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import { products } from "../../data/products";
 
+import co100 from "../../assets/images/CO100-1.png";
+import coaf100 from "../../assets/images/COAF-100-65.png";
+import rin51223 from "../../assets/images/RIN-51223.png";
+import co2ve100 from "../../assets/images/CO2VE-100.png";
+import tap47379 from "../../assets/images/TAP-47379.png";
+
+const imageMap: Record<string, ImageMetadata> = {
+  "CO100-1.png": co100,
+  "COAF-100-65.png": coaf100,
+  "RIN-51223.png": rin51223,
+  "CO2VE-100.png": co2ve100,
+  "TAP-47379.png": tap47379,
+};
+
+const base = import.meta.env.BASE_URL;
 const iconProps = { size: 16, strokeWidth: 2 };
-
-const products = [
-  {
-    code: 'CO100',
-    name: 'Curva Sanitaria Principal',
-    description: 'Perfil de 4000mm, Blanco RAL 9010. Radio de curvatura ideal para encuentros pared-piso en cuartos fríos.',
-    image: '/images/co100.jpg',
-    cta: 'Cotizar Honduras',
-  },
-  {
-    code: 'COPF 100',
-    name: 'Base de Soporte Perfil',
-    description: 'Sistema de anclaje para curva sanitaria. Garantiza fijación mecánica en paneles de cámara frigorífica.',
-    image: '/images/copf100.jpg',
-    cta: 'Ficha Técnica',
-  },
-  {
-    code: 'RIN-51223',
-    name: 'Rinconera Interna 3P',
-    description: 'Accesorio triple pared para la unión perfecta de tres esquinas internas. Máxima higiene en vértices.',
-    image: '/images/rin51223.jpg',
-    cta: 'Solicitar Precio',
-  },
-  {
-    code: 'CO2VE 100',
-    name: 'Esquinero Externo PVC',
-    description: 'Protección contra impactos en esquinas salientes. Diseño aerodinámico de fácil limpieza.',
-    image: '/images/co2ve100.jpg',
-    cta: 'Ver Disponibilidad',
-  },
-  {
-    code: 'TAP-47379',
-    name: 'Tapeta de Terminación',
-    description: 'Tapa final para perfiles de 100mm. Sella los extremos para evitar entrada de residuos y humedad.',
-    image: '/images/tap47379.jpg',
-    cta: 'Consultar Stock',
-  },
-];
 ---
 
 <section class="catalog section-padding" id="catalogo">
   <div class="container">
-
-    <div class="section-header">
+    <div class="section-header" data-reveal="fade-up">
       <h2>Portafolio Técnico</h2>
-      <p>Componentes certificados para acabados sanitarios de alto nivel en plantas industriales.</p>
+      <p>
+        Componentes certificados para acabados sanitarios de alto nivel en
+        plantas industriales.
+      </p>
     </div>
 
     <div class="catalog__grid">
-      {products.map((product) => (
-        <article class="product-card">
-
-          <div class="product-card__img">
-            <img
-              src={product.image}
-              alt={product.name}
-              width={400}
-              height={240}
-              loading="lazy"
-              onerror="this.style.display='none'"
-            />
-            <div class="product-card__placeholder">
-              <span>{product.code}</span>
-            </div>
-          </div>
-
-          <div class="product-card__body">
-            <span class="product-card__code">{product.code}</span>
-            <h3 class="product-card__name">{product.name}</h3>
-            <p class="product-card__desc">{product.description}</p>
-            
-            <a  href="https://wa.me/504XXXXXXXXX"
-              class="product-card__cta"
-              target="_blank"
-              rel="noopener noreferrer"
+      {
+        products.map((product) => {
+          const img = imageMap[product.imageKey];
+          return (
+            <a
+              href={`${base}productos/${product.slug}`}
+              class="product-card"
+              data-reveal="fade-up"
+              data-reveal-delay="100"
             >
-              {product.cta}
-              <ArrowRight {...iconProps} />
+              <div class="product-card__img">
+                {img && (
+                  <Image
+                    src={img}
+                    alt={product.name + " - EQUIPROH Honduras"}
+                    width={350}
+                    height={240}
+                    class="product__img"
+                    format="webp"
+                    loading="eager"
+                  />
+                )}
+              </div>
+
+              <div class="product-card__body">
+                <span class="product-card__code">{product.code}</span>
+                <h3 class="product-card__name">{product.name}</h3>
+                <p class="product-card__desc">{product.shortDescription}</p>
+                <span class="product-card__cta">
+                  {product.cta}
+                  <ArrowRight {...iconProps} />
+                </span>
+              </div>
             </a>
-          </div>
-
-        </article>
-      ))}
+          );
+        })
+      }
     </div>
-
   </div>
 </section>
 
