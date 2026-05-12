@@ -5,7 +5,6 @@ import MobileMenu from "./MobileMenu.astro";
 
 import logo from "../../assets/images/logo-equiproh.svg";
 
-
 const base = import.meta.env.BASE_URL;
 ---
 
@@ -48,26 +47,35 @@ const base = import.meta.env.BASE_URL;
 <MobileMenu />
 
 <script>
-    const navbar = document.getElementById("navbar");
-    const burger = document.getElementById("burger-btn");
+    function initNavbar() {
+        const navbar = document.getElementById("navbar");
+        const burger = document.getElementById("burger-btn");
 
-    // Scroll effect
-    window.addEventListener("scroll", () => {
+        // Scroll effect
+        window.addEventListener("scroll", () => {
+            navbar?.classList.toggle("navbar--scrolled", window.scrollY > 20);
+        });
+
+        // Aplicar estado inicial por si la página carga con scroll
         navbar?.classList.toggle("navbar--scrolled", window.scrollY > 20);
-    });
 
-    // Burger toggle — el estado real lo maneja MobileMenu.astro
-    burger?.addEventListener("click", () => {
-        const expanded = burger.getAttribute("aria-expanded") === "true";
-        burger.setAttribute("aria-expanded", String(!expanded));
-        burger.classList.toggle("is-active");
-    });
+        // Burger toggle
+        burger?.addEventListener("click", () => {
+            const expanded = burger.getAttribute("aria-expanded") === "true";
+            burger.setAttribute("aria-expanded", String(!expanded));
+            burger.classList.toggle("is-active");
+        });
+    }
+
+    document.addEventListener("astro:page-load", initNavbar);
 </script>
 
 <style>
     .navbar {
-        position: sticky;
+        position: fixed; /* ← era sticky */
         top: 0;
+        left: 0;
+        right: 0;
         z-index: 100;
         height: 72px;
         display: flex;

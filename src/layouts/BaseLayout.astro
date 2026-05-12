@@ -2,7 +2,7 @@
 import { ClientRouter } from "astro:transitions";
 import Navbar from "../components/layout/Navbar.astro";
 import Footer from "../components/layout/Footer.astro";
-import ScrollReveal from '../components/ui/ScrollReveal.astro';
+import ScrollReveal from "../components/ui/ScrollReveal.astro";
 
 interface Props {
     title: string;
@@ -133,6 +133,7 @@ const canonicalURL = Astro.url.href;
     html {
         scroll-behavior: smooth;
         -webkit-text-size-adjust: 100%;
+        overflow-x: hidden;
     }
 
     body {
@@ -140,8 +141,10 @@ const canonicalURL = Astro.url.href;
         color: var(--color-text);
         background-color: var(--color-bg);
         line-height: 1.6;
-        overflow-x: hidden;
         -webkit-font-smoothing: antialiased;
+    }
+    main {
+        padding-top: 72px;
     }
 
     img,

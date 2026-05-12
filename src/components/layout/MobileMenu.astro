@@ -1,5 +1,8 @@
 ---
+import { Image } from "astro:assets";
 import NavLinks from '../ui/NavLinks.astro';
+
+import logo from "../../assets/images/logo-equiproh.svg";
 ---
 
 <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
@@ -7,7 +10,7 @@ import NavLinks from '../ui/NavLinks.astro';
 
   <nav class="mobile-menu__panel" aria-label="Menú móvil">
     <div class="mobile-menu__header">
-      <span class="mobile-menu__logo">EQUI<span>PROH</span></span>
+      <Image src={logo} alt="EQUIPROH" width={140} height={40} />
       <button
         class="mobile-menu__close"
         id="close-btn"
@@ -36,33 +39,36 @@ import NavLinks from '../ui/NavLinks.astro';
 </div>
 
 <script>
-  const burgerBtn  = document.getElementById('burger-btn');
-  const closeBtn   = document.getElementById('close-btn');
-  const overlay    = document.getElementById('menu-overlay');
-  const mobileMenu = document.getElementById('mobile-menu');
+  function initMobileMenu() {
+    const burgerBtn  = document.getElementById('burger-btn');
+    const closeBtn   = document.getElementById('close-btn');
+    const overlay    = document.getElementById('menu-overlay');
+    const mobileMenu = document.getElementById('mobile-menu');
 
-  function openMenu() {
-    mobileMenu?.classList.add('is-open');
-    mobileMenu?.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
+    function openMenu() {
+      mobileMenu?.classList.add('is-open');
+      mobileMenu?.setAttribute('aria-hidden', 'false');
+      document.documentElement.style.overflow = 'hidden'; // ← html, no body
+    }
+
+    function closeMenu() {
+      mobileMenu?.classList.remove('is-open');
+      mobileMenu?.setAttribute('aria-hidden', 'true');
+      document.documentElement.style.overflow = ''; // ← html, no body
+      burgerBtn?.classList.remove('is-active');
+      burgerBtn?.setAttribute('aria-expanded', 'false');
+    }
+
+    burgerBtn?.addEventListener('click', openMenu);
+    closeBtn?.addEventListener('click', closeMenu);
+    overlay?.addEventListener('click', closeMenu);
+
+    mobileMenu?.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
   }
 
-  function closeMenu() {
-    mobileMenu?.classList.remove('is-open');
-    mobileMenu?.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-    burgerBtn?.classList.remove('is-active');
-    burgerBtn?.setAttribute('aria-expanded', 'false');
-  }
-
-  burgerBtn?.addEventListener('click', openMenu);
-  closeBtn?.addEventListener('click', closeMenu);
-  overlay?.addEventListener('click', closeMenu);
-
-  // Cerrar al hacer clic en un link
-  mobileMenu?.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', closeMenu);
-  });
+  document.addEventListener('astro:page-load', initMobileMenu);
 </script>
 
 <style>

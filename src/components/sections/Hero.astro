@@ -6,10 +6,24 @@ import ImagenHero from "../../assets/images/CO100-1.png";
 
 <section class="hero" id="inicio">
   <div class="container hero__inner">
-
     <div class="hero__content" data-reveal="fade-right">
       <div class="hero__badge">
-        <span>🇭🇳</span> Distribución en todo Honduras
+        <svg
+          width="20"
+          height="14"
+          viewBox="0 0 20 14"
+          xmlns="http://www.w3.org/2000/svg"
+          style="border-radius: 2px; flex-shrink: 0;"
+        >
+          <rect width="20" height="14" fill="#0073CF"></rect>
+          <rect y="4.67" width="20" height="4.67" fill="#FFFFFF"></rect>
+          <g fill="#0073CF">
+            <polygon
+              points="10,5.5 10.4,6.7 11.7,6.7 10.7,7.4 11.1,8.6 10,7.9 8.9,8.6 9.3,7.4 8.3,6.7 9.6,6.7"
+            ></polygon>
+          </g>
+        </svg>
+        Distribución en todo Honduras
       </div>
 
       <h1 class="hero__title">
@@ -17,18 +31,14 @@ import ImagenHero from "../../assets/images/CO100-1.png";
       </h1>
 
       <p class="hero__subtitle">
-        Soluciones de ingeniería higiénica para cuartos fríos, laboratorios
-        y plantas industriales. El estándar de calidad B2B en San Pedro Sula
-        y Tegucigalpa.
+        Soluciones de ingeniería higiénica para cuartos fríos, laboratorios y
+        plantas industriales. El estándar de calidad B2B en San Pedro Sula y
+        Tegucigalpa.
       </p>
 
       <div class="hero__actions">
-        <a href="#catalogo" class="btn btn-primary">
-          Ver Productos
-        </a>
-        <a href="#contacto" class="btn btn-outline">
-          Solicitar Visita
-        </a>
+        <a href="#catalogo" class="btn btn-primary"> Ver Productos </a>
+        <a href="#contacto" class="btn btn-outline"> Solicitar Visita </a>
       </div>
 
       <div class="hero__stats">
@@ -52,14 +62,14 @@ import ImagenHero from "../../assets/images/CO100-1.png";
     <div class="hero__visual" data-reveal="fade-left" data-reveal-delay="200">
       <div class="hero__image-wrapper">
         <Image
-                src={ImagenHero}
-                alt="Planta industrial con acabados sanitarios PVC Honduras"
-                width={600}
-                height={500}
-                class="producto__thumb-img"
-                format="webp"
-                loading="eager"
-              />
+          src={ImagenHero}
+          alt="Planta industrial con acabados sanitarios PVC Honduras"
+          width={600}
+          height={500}
+          class="producto__thumb-img"
+          format="webp"
+          loading="eager"
+        />
       </div>
       <div class="hero__card hero__card--top">
         <span>✅</span>
@@ -70,7 +80,6 @@ import ImagenHero from "../../assets/images/CO100-1.png";
         <p>Apto para cuartos fríos</p>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -83,13 +92,17 @@ import ImagenHero from "../../assets/images/CO100-1.png";
   }
 
   .hero::before {
-    content: '';
+    content: "";
     position: absolute;
     top: -20%;
     right: -10%;
     width: 50%;
     height: 80%;
-    background: radial-gradient(circle, rgba(0, 112, 243, 0.06) 0%, transparent 70%);
+    background: radial-gradient(
+      circle,
+      rgba(0, 112, 243, 0.06) 0%,
+      transparent 70%
+    );
     pointer-events: none;
   }
 
@@ -228,8 +241,13 @@ import ImagenHero from "../../assets/images/CO100-1.png";
   }
 
   @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50%       { transform: translateY(-8px); }
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
   }
 
   /* Responsive */

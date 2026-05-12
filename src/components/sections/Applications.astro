@@ -1,73 +1,97 @@
 ---
 const applications = [
   {
-    title: 'Cuartos Fríos',
-    description: 'Cámaras de refrigeración y congelación para la industria alimentaria hondureña.',
-    image: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1200&q=80',
+    title: "Cuartos Fríos",
+    description:
+      "Cámaras de refrigeración y congelación para la industria alimentaria hondureña.",
+    image:
+      "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1200&q=80",
   },
   {
-    title: 'Industria Cárnica',
-    description: 'Plantas de procesamiento que requieren higiene máxima en pisos y paredes.',
-    image: 'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=1200&q=80',
+    title: "Industria Cárnica",
+    description:
+      "Plantas de procesamiento que requieren higiene máxima en pisos y paredes.",
+    image:
+      "https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=1200&q=80",
   },
   {
-    title: 'Farmacéuticas',
-    description: 'Laboratorios y plantas donde el control sanitario es crítico.',
-    image: 'https://images.unsplash.com/photo-1563213126-a4273aed2016?w=1200&q=80',
+    title: "Farmacéuticas",
+    description:
+      "Laboratorios y plantas donde el control sanitario es crítico.",
+    image:
+      "https://images.unsplash.com/photo-1563213126-a4273aed2016?w=1200&q=80",
   },
   {
-    title: 'Cocinas Industriales',
-    description: 'Cocinas B2B de hoteles, hospitales y cadenas de restaurantes.',
-    image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80',
+    title: "Cocinas Industriales",
+    description:
+      "Cocinas B2B de hoteles, hospitales y cadenas de restaurantes.",
+    image:
+      "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80",
   },
   {
-    title: 'Procesadoras de Mariscos',
-    description: 'Plantas costeras con alta exposición a humedad y salmuera.',
-    image: 'https://images.unsplash.com/photo-1498654200943-1088dd4438ae?w=1200&q=80',
+    title: "Procesadoras de Mariscos",
+    description: "Plantas costeras con alta exposición a humedad y salmuera.",
+    image:
+      "https://images.unsplash.com/photo-1498654200943-1088dd4438ae?w=1200&q=80",
   },
   {
-    title: 'Zonas Francas',
-    description: 'Industrias exportadoras en Choloma y SPS con estándares internacionales.',
-    image: 'https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=1200&q=80',
+    title: "Zonas Francas",
+    description:
+      "Industrias exportadoras en Choloma y SPS con estándares internacionales.",
+    image:
+      "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=1200&q=80",
   },
 ];
 ---
 
 <section class="applications section-padding" id="aplicaciones">
   <div class="container">
-
-    <div class="section-header" data-reveal="fade-up" >
+    <div class="section-header" data-reveal="fade-up">
       <h2>Sectores en Honduras</h2>
-      <p>Nuestras soluciones operan en las industrias más exigentes del país.</p>
+      <p>
+        Nuestras soluciones operan en las industrias más exigentes del país.
+      </p>
     </div>
 
     <div class="slider" data-reveal="scale" data-reveal-delay="200">
-
       <div class="slider__track" id="slider-track">
-        {applications.map((app, i) => (
-          <div class="slider__slide" data-index={i}>
-            <img
-              src={app.image}
-              alt={app.title}
-              width={1200}
-              height={600}
-              loading={i === 0 ? 'eager' : 'lazy'}
-            />
-            <div class="slider__overlay"></div>
-            <div class="slider__content">
-              <span class="slider__counter">{String(i + 1).padStart(2, '0')} / {String(applications.length).padStart(2, '0')}</span>
-              <h3 class="slider__title">{app.title}</h3>
-              <p class="slider__desc">{app.description}</p>
+        {
+          applications.map((app, i) => (
+            <div class="slider__slide" data-index={i}>
+              <img
+                src={app.image}
+                alt={app.title}
+                width={1200}
+                height={600}
+                loading={i === 0 ? "eager" : "lazy"}
+              />
+              <div class="slider__overlay" />
+              <div class="slider__content">
+                <span class="slider__counter">
+                  {String(i + 1).padStart(2, "0")} /{" "}
+                  {String(applications.length).padStart(2, "0")}
+                </span>
+                <h3 class="slider__title">{app.title}</h3>
+                <p class="slider__desc">{app.description}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        }
       </div>
 
       <!-- Flechas -->
-      <button class="slider__arrow slider__arrow--prev" id="slider-prev" aria-label="Anterior">
+      <button
+        class="slider__arrow slider__arrow--prev"
+        id="slider-prev"
+        aria-label="Anterior"
+      >
         &#8592;
       </button>
-      <button class="slider__arrow slider__arrow--next" id="slider-next" aria-label="Siguiente">
+      <button
+        class="slider__arrow slider__arrow--next"
+        id="slider-next"
+        aria-label="Siguiente"
+      >
         &#8594;
       </button>
 
@@ -75,31 +99,28 @@ const applications = [
       <div class="slider__progress">
         <div class="slider__progress-bar" id="slider-progress"></div>
       </div>
-
     </div>
-
   </div>
 </section>
 
 <script>
-  const track    = document.getElementById('slider-track') as HTMLElement;
-  const prevBtn  = document.getElementById('slider-prev') as HTMLButtonElement;
-  const nextBtn  = document.getElementById('slider-next') as HTMLButtonElement;
-  const progress = document.getElementById('slider-progress') as HTMLElement;
+  const track = document.getElementById("slider-track") as HTMLElement;
+  const prevBtn = document.getElementById("slider-prev") as HTMLButtonElement;
+  const nextBtn = document.getElementById("slider-next") as HTMLButtonElement;
+  const progress = document.getElementById("slider-progress") as HTMLElement;
 
   const total = track.children.length;
   let current = 0;
 
   function goTo(index: number) {
     current = (index + total) % total;
-    track.style.transform = `translateX(-${current * 100}%)`;
+    const slideWidth = track.parentElement!.offsetWidth;
+    track.style.transform = `translateX(-${current * slideWidth}px)`;
     progress.style.width = `${((current + 1) / total) * 100}%`;
-    prevBtn.disabled = false;
-    nextBtn.disabled = false;
   }
 
-  prevBtn.addEventListener('click', () => goTo(current - 1));
-  nextBtn.addEventListener('click', () => goTo(current + 1));
+  prevBtn.addEventListener("click", () => goTo(current - 1));
+  nextBtn.addEventListener("click", () => goTo(current + 1));
 
   // Inicializar barra de progreso
   goTo(0);
@@ -107,16 +128,24 @@ const applications = [
   // Swipe touch support
   let startX = 0;
 
-  track.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].clientX;
-  }, { passive: true });
+  track.addEventListener(
+    "touchstart",
+    (e) => {
+      startX = e.touches[0].clientX;
+    },
+    { passive: true },
+  );
 
-  track.addEventListener('touchend', (e) => {
-    const diff = startX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) {
-      diff > 0 ? goTo(current + 1) : goTo(current - 1);
-    }
-  }, { passive: true });
+  track.addEventListener(
+    "touchend",
+    (e) => {
+      const diff = startX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) {
+        diff > 0 ? goTo(current + 1) : goTo(current - 1);
+      }
+    },
+    { passive: true },
+  );
 </script>
 
 <style>
@@ -160,7 +189,7 @@ const applications = [
     background: linear-gradient(
       to bottom,
       rgba(10, 37, 64, 0.15) 0%,
-      rgba(10, 37, 64, 0.80) 100%
+      rgba(10, 37, 64, 0.8) 100%
     );
   }
 
@@ -224,8 +253,12 @@ const applications = [
     transform: translateY(-50%) scale(1.08);
   }
 
-  .slider__arrow--prev { left: var(--space-6); }
-  .slider__arrow--next { right: var(--space-6); }
+  .slider__arrow--prev {
+    left: var(--space-6);
+  }
+  .slider__arrow--next {
+    right: var(--space-6);
+  }
 
   /* Barra de progreso */
   .slider__progress {
@@ -245,14 +278,28 @@ const applications = [
 
   /* Responsive */
   @media (max-width: 768px) {
+    .applications .container {
+      padding-inline: var(--space-6); /* restaura el padding */
+    }
+    .applications .section-header {
+      padding-inline: 0;
+    }
+    .slider {
+      border-radius: var(--radius-lg); /* recupera el redondeo */
+      overflow: hidden;
+    }
+    .slider__track {
+      width: 100%;
+    }
     .slider__slide {
       height: 400px;
+      min-width: 100%;
+      width: 100%;
+      flex-shrink: 0;
     }
-
     .slider__content {
       padding: var(--space-8);
     }
-
     .slider__arrow {
       width: 40px;
       height: 40px;
