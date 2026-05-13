@@ -21,28 +21,23 @@ const canonicalURL = Astro.url.href;
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <!-- SEO Primario -->
         <title>{title}</title>
         <meta name="description" content={description} />
         <link rel="canonical" href={canonicalURL} />
 
-        <!-- Open Graph -->
         <meta property="og:type" content="website" />
         <meta property="og:url" content={canonicalURL} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:image" content={image} />
 
-        <!-- Twitter Card -->
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={image} />
 
-        <!-- Favicon -->
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" type="image/svg+xml" href="favicon.png" />
 
-        <!-- Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -64,7 +59,6 @@ const canonicalURL = Astro.url.href;
 
 <style is:global>
     :root {
-        /* Colores */
         --color-primary: #0a2540;
         --color-accent: #0070f3;
         --color-accent-hover: #005bc1;
@@ -75,7 +69,6 @@ const canonicalURL = Astro.url.href;
         --color-border: #e2e8f0;
         --color-success: #25d366;
 
-        /* Tipografía */
         --font-base: "Inter", system-ui, sans-serif;
         --text-xs: 0.75rem;
         --text-sm: 0.875rem;
@@ -87,7 +80,6 @@ const canonicalURL = Astro.url.href;
         --text-4xl: 2.25rem;
         --text-5xl: 3rem;
 
-        /* Espaciado */
         --space-1: 0.25rem;
         --space-2: 0.5rem;
         --space-3: 0.75rem;
@@ -100,28 +92,23 @@ const canonicalURL = Astro.url.href;
         --space-20: 5rem;
         --space-24: 6rem;
 
-        /* Bordes */
         --radius-sm: 6px;
         --radius-md: 12px;
         --radius-lg: 20px;
         --radius-xl: 32px;
         --radius-full: 9999px;
 
-        /* Sombras */
         --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
         --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
         --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.12);
         --shadow-xl: 0 20px 50px rgba(0, 0, 0, 0.15);
 
-        /* Transiciones */
         --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-        /* Layout */
         --container-max: 1200px;
         --section-padding: clamp(4rem, 8vw, 7rem);
     }
 
-    /* Reset */
     *,
     *::before,
     *::after {
@@ -133,7 +120,8 @@ const canonicalURL = Astro.url.href;
     html {
         scroll-behavior: smooth;
         -webkit-text-size-adjust: 100%;
-        overflow-x: hidden;
+        scroll-padding-top: 72px;
+        overflow-x: clip; 
     }
 
     body {
@@ -142,10 +130,10 @@ const canonicalURL = Astro.url.href;
         background-color: var(--color-bg);
         line-height: 1.6;
         -webkit-font-smoothing: antialiased;
+        /* overflow-x: hidden; */
+        min-height: 100dvh;
     }
-    main {
-        padding-top: 72px;
-    }
+
 
     img,
     video {
@@ -164,19 +152,13 @@ const canonicalURL = Astro.url.href;
         list-style: none;
     }
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
+    h1, h2, h3, h4, h5, h6 {
         color: var(--color-primary);
         font-weight: 700;
         line-height: 1.1;
         letter-spacing: -0.02em;
     }
 
-    /* Utilidades globales */
     .container {
         width: 100%;
         max-width: var(--container-max);

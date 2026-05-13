@@ -36,15 +36,14 @@ if (!product) {
 const productImage = imageMap[product.imageKey];
 
 // Productos relacionados (todos excepto el actual)
-const relatedProducts = products.filter((p) => p.slug !== product.slug).slice(0, 3);
+const relatedProducts = products
+  .filter((p) => p.slug !== product.slug)
+  .slice(0, 3);
 
 const base = import.meta.env.BASE_URL;
-
-
 ---
 
 <BaseLayout title={product.metaTitle} description={product.metaDescription}>
-
   <!-- BREADCRUMB -->
   <div class="breadcrumb-bar">
     <div class="container breadcrumb-inner">
@@ -60,21 +59,22 @@ const base = import.meta.env.BASE_URL;
   <section class="product-hero section-padding">
     <div class="container">
       <div class="product-hero__grid">
-
         <!-- Imagen -->
         <div class="product-hero__img-wrapper" data-reveal="fade-right">
           <div class="product-hero__img-bg">
-            {productImage && (
-              <Image
-                src={productImage}
-                alt={product.name + " - EQUIPROH Honduras"}
-                width={560}
-                height={480}
-                format="webp"
-                loading="eager"
-                class="product-hero__img"
-              />
-            )}
+            {
+              productImage && (
+                <Image
+                  src={productImage}
+                  alt={product.name + " - EQUIPROH Honduras"}
+                  width={560}
+                  height={480}
+                  format="webp"
+                  loading="eager"
+                  class="product-hero__img"
+                />
+              )
+            }
           </div>
           <div class="product-hero__badge">
             <CheckCircle size={14} strokeWidth={2} />
@@ -83,14 +83,21 @@ const base = import.meta.env.BASE_URL;
         </div>
 
         <!-- Info -->
-        <div class="product-hero__info" data-reveal="fade-left" data-reveal-delay="100">
+        <div
+          class="product-hero__info"
+          data-reveal="fade-left"
+          data-reveal-delay="100"
+        >
           <span class="product-hero__code">{product.code}</span>
           <h1 class="product-hero__title">{product.name}</h1>
           <p class="product-hero__desc">{product.fullDescription}</p>
 
           <div class="product-hero__actions">
-            
-            <a  href={"https://wa.me/504XXXXXXXXX?text=Hola, me interesa el producto " + product.code + " - " + product.name}
+            <a
+              href={"https://wa.me/504XXXXXXXXX?text=Hola, me interesa el producto " +
+                product.code +
+                " - " +
+                product.name}
               class="btn btn-whatsapp"
               target="_blank"
               rel="noopener noreferrer"
@@ -109,7 +116,6 @@ const base = import.meta.env.BASE_URL;
             Ver todos los productos
           </a>
         </div>
-
       </div>
     </div>
   </section>
@@ -118,17 +124,18 @@ const base = import.meta.env.BASE_URL;
   <section class="product-details section-padding">
     <div class="container">
       <div class="product-details__grid">
-
         <!-- Especificaciones técnicas -->
         <div class="specs-card" data-reveal="fade-up">
           <h2 class="specs-card__title">Especificaciones Técnicas</h2>
           <div class="specs-table">
-            {product.specs.map((spec) => (
-              <div class="specs-row">
-                <span class="specs-label">{spec.label}</span>
-                <span class="specs-value">{spec.value}</span>
-              </div>
-            ))}
+            {
+              product.specs.map((spec) => (
+                <div class="specs-row">
+                  <span class="specs-label">{spec.label}</span>
+                  <span class="specs-value">{spec.value}</span>
+                </div>
+              ))
+            }
           </div>
         </div>
 
@@ -136,18 +143,21 @@ const base = import.meta.env.BASE_URL;
         <div class="apps-card" data-reveal="fade-up" data-reveal-delay="100">
           <h2 class="apps-card__title">Aplicaciones</h2>
           <ul class="apps-list">
-            {product.applications.map((app) => (
-              <li class="apps-item">
-                <CheckCircle size={16} strokeWidth={2} class="apps-icon" />
-                {app}
-              </li>
-            ))}
+            {
+              product.applications.map((app) => (
+                <li class="apps-item">
+                  <CheckCircle size={16} strokeWidth={2} class="apps-icon" />
+                  {app}
+                </li>
+              ))
+            }
           </ul>
 
           <div class="apps-cta">
             <p>¿Tienes un proyecto en Honduras?</p>
-            
-            <a  href={"https://wa.me/504XXXXXXXXX"}
+
+            <a
+              href={"https://wa.me/504XXXXXXXXX"}
               class="btn btn-primary"
               target="_blank"
               rel="noopener noreferrer"
@@ -157,10 +167,37 @@ const base = import.meta.env.BASE_URL;
             </a>
           </div>
         </div>
-
       </div>
     </div>
   </section>
+
+  <!-- INSTALACIÓN -->
+  {
+    product.installSteps && product.installSteps.length > 0 && (
+      <section class="install section-padding">
+        <div class="container">
+          <div class="install__inner" data-reveal="fade-up">
+            <div class="install__header">
+              <h2>Modo de Instalación</h2>
+              <p>
+                Sigue estos pasos para una instalación correcta y certificada.
+              </p>
+            </div>
+            <div class="install__steps">
+              {product.installSteps.map((step, i) => (
+                <div class="install__step">
+                  <div class="install__step-num">
+                    {String(i + 1).padStart(2, "0")}
+                  </div>
+                  <p class="install__step-text">{step}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   <!-- PRODUCTOS RELACIONADOS -->
   <section class="related section-padding">
@@ -171,35 +208,40 @@ const base = import.meta.env.BASE_URL;
       </div>
 
       <div class="related__grid">
-        {relatedProducts.map((rp) => {
-          const rpImage = imageMap[rp.imageKey];
-          return (
-            <a href={`${base}productos/${rp.slug}`} class="related-card" data-reveal="fade-up">
-              <div class="related-card__img">
-                {rpImage && (
-                  <Image
-                    src={rpImage}
-                    alt={rp.name}
-                    width={280}
-                    height={200}
-                    format="webp"
-                    loading="lazy"
-                    class="related-card__photo"
-                  />
-                )}
-              </div>
-              <div class="related-card__body">
-                <span class="related-card__code">{rp.code}</span>
-                <h3 class="related-card__name">{rp.name}</h3>
-                <p class="related-card__desc">{rp.shortDescription}</p>
-              </div>
-            </a>
-          );
-        })}
+        {
+          relatedProducts.map((rp) => {
+            const rpImage = imageMap[rp.imageKey];
+            return (
+              <a
+                href={`${base}productos/${rp.slug}`}
+                class="related-card"
+                data-reveal="fade-up"
+              >
+                <div class="related-card__img">
+                  {rpImage && (
+                    <Image
+                      src={rpImage}
+                      alt={rp.name}
+                      width={280}
+                      height={200}
+                      format="webp"
+                      loading="lazy"
+                      class="related-card__photo"
+                    />
+                  )}
+                </div>
+                <div class="related-card__body">
+                  <span class="related-card__code">{rp.code}</span>
+                  <h3 class="related-card__name">{rp.name}</h3>
+                  <p class="related-card__desc">{rp.shortDescription}</p>
+                </div>
+              </a>
+            );
+          })
+        }
       </div>
     </div>
   </section>
-
 </BaseLayout>
 
 <style>
@@ -505,6 +547,74 @@ const base = import.meta.env.BASE_URL;
     font-size: var(--text-xs);
     color: var(--color-text-muted);
     line-height: 1.6;
+  }
+  /* Instalación */
+  .install {
+    background: var(--color-primary);
+  }
+
+  .install__inner {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: var(--space-16);
+    align-items: start;
+  }
+
+  .install__header h2 {
+    color: #ffffff;
+    font-size: clamp(var(--text-2xl), 3vw, var(--text-4xl));
+    margin-bottom: var(--space-4);
+  }
+
+  .install__header p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: var(--text-base);
+    line-height: 1.7;
+  }
+
+  .install__steps {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .install__step {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-6);
+    padding: var(--space-6);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: var(--transition);
+  }
+
+  .install__step:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(0, 112, 243, 0.4);
+  }
+
+  .install__step-num {
+    font-size: var(--text-2xl);
+    font-weight: 800;
+    color: var(--color-accent);
+    line-height: 1;
+    flex-shrink: 0;
+    min-width: 40px;
+  }
+
+  .install__step-text {
+    font-size: var(--text-base);
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.7;
+    padding-top: 2px;
+  }
+
+  @media (max-width: 768px) {
+    .install__inner {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
   }
 
   /* Responsive */

@@ -11,11 +11,10 @@ const base = import.meta.env.BASE_URL;
 <header class="navbar" id="navbar">
     <div class="container navbar__inner">
         <a href={base} class="navbar__logo" aria-label="EQUIPROH - Inicio">
-            <!-- EQUI<span>PROH</span> -->
             <Image src={logo} alt="EQUIPROH" width={140} height={40} />
         </a>
 
-        <nav class="navbar__nav" aria-label="Navegación principal">
+        <nav class="navbar__nav" aria-label="Navegacion principal">
             <NavLinks />
         </nav>
 
@@ -32,7 +31,7 @@ const base = import.meta.env.BASE_URL;
             <button
                 class="navbar__burger"
                 id="burger-btn"
-                aria-label="Abrir menú"
+                aria-label="Abrir menu"
                 aria-expanded="false"
                 aria-controls="mobile-menu"
             >
@@ -51,15 +50,12 @@ const base = import.meta.env.BASE_URL;
         const navbar = document.getElementById("navbar");
         const burger = document.getElementById("burger-btn");
 
-        // Scroll effect
         window.addEventListener("scroll", () => {
             navbar?.classList.toggle("navbar--scrolled", window.scrollY > 20);
         });
 
-        // Aplicar estado inicial por si la página carga con scroll
         navbar?.classList.toggle("navbar--scrolled", window.scrollY > 20);
 
-        // Burger toggle
         burger?.addEventListener("click", () => {
             const expanded = burger.getAttribute("aria-expanded") === "true";
             burger.setAttribute("aria-expanded", String(!expanded));
@@ -72,7 +68,8 @@ const base = import.meta.env.BASE_URL;
 
 <style>
     .navbar {
-        position: fixed; /* ← era sticky */
+        position: -webkit-sticky; /* Soporte para Safari */
+        position: fixed;
         top: 0;
         left: 0;
         right: 0;
@@ -80,15 +77,13 @@ const base = import.meta.env.BASE_URL;
         height: 72px;
         display: flex;
         align-items: center;
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border-bottom: 1px solid transparent;
-        transition: var(--transition);
+        background: rgba(255, 255, 255, 0.95);
+        border-bottom: 1px solid var(--color-border);
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
     }
 
     .navbar--scrolled {
-        border-bottom-color: var(--color-border);
         box-shadow: var(--shadow-sm);
     }
 
@@ -97,6 +92,7 @@ const base = import.meta.env.BASE_URL;
         align-items: center;
         justify-content: space-between;
         gap: var(--space-8);
+        width: 100%;
     }
 
     .navbar__logo {
@@ -124,7 +120,6 @@ const base = import.meta.env.BASE_URL;
         flex-shrink: 0;
     }
 
-    /* Burger button */
     .navbar__burger {
         display: none;
         flex-direction: column;
@@ -154,7 +149,6 @@ const base = import.meta.env.BASE_URL;
         transform-origin: center;
     }
 
-    /* Burger animado cuando está activo */
     .navbar__burger.is-active span:nth-child(1) {
         transform: translateY(7px) rotate(45deg);
     }
@@ -168,7 +162,6 @@ const base = import.meta.env.BASE_URL;
         transform: translateY(-7px) rotate(-45deg);
     }
 
-    /* Responsive */
     @media (max-width: 768px) {
         .navbar__nav {
             display: none;
