@@ -94,9 +94,9 @@ const base = import.meta.env.BASE_URL;
 
           <div class="product-hero__actions">
             <a
-              href={"https://wa.me/504XXXXXXXXX?text=Hola, me interesa el producto " +
+              href={"https://wa.me/50431496022?text=Hola%20EQUIPROH%2C%20me%20interesa%20el%20producto%20" +
                 product.code +
-                " - " +
+                "%20-%20" +
                 product.name}
               class="btn btn-whatsapp"
               target="_blank"
@@ -105,13 +105,13 @@ const base = import.meta.env.BASE_URL;
               <MessageCircle size={18} strokeWidth={2} />
               {product.cta}
             </a>
-            <a href="mailto:ventas.hn@equiproh.com" class="btn btn-outline">
+            <a href="mailto:ventas@equiproh.com" class="btn btn-outline">
               <FileText size={18} strokeWidth={2} />
               Solicitar Cotización
             </a>
           </div>
 
-          <a href="/#catalogo" class="product-hero__back">
+          <a href={`${base}#catalogo`} class="product-hero__back">
             <ArrowLeft size={16} strokeWidth={2} />
             Ver todos los productos
           </a>
@@ -157,7 +157,7 @@ const base = import.meta.env.BASE_URL;
             <p>¿Tienes un proyecto en Honduras?</p>
 
             <a
-              href={"https://wa.me/504XXXXXXXXX"}
+              href="https://wa.me/50431496022?text=Hola%20EQUIPROH%2C%20necesito%20asesor%C3%ADa%20para%20un%20proyecto"
               class="btn btn-primary"
               target="_blank"
               rel="noopener noreferrer"
@@ -249,7 +249,10 @@ const base = import.meta.env.BASE_URL;
   .breadcrumb-bar {
     background: var(--color-bg-soft);
     border-bottom: 1px solid var(--color-border);
+    /* margin-top: var(--navbar-height); */
     padding: var(--space-3) 0;
+    position: relative;
+    z-index: 1;
   }
 
   .breadcrumb-inner {
@@ -280,6 +283,7 @@ const base = import.meta.env.BASE_URL;
   /* Hero producto */
   .product-hero {
     background: var(--color-bg);
+    padding-block-start: var(--space-8);
   }
 
   .product-hero__grid {

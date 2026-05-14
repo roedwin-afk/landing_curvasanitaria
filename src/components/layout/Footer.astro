@@ -86,16 +86,12 @@ const base = import.meta.env.BASE_URL;
       <div class="footer__col">
         <h4 class="footer__col-title">Sectores</h4>
         <ul class="footer__links">
-          {
-            sectors.map((sector) => (
-              <li>
-                <span class="footer__link footer__link--static">
-                  <ArrowUpRight size={14} strokeWidth={2} />
-                  {sector}
-                </span>
-              </li>
-            ))
-          }
+          <li><span class="footer__sector">Cuartos Fríos</span></li>
+          <li><span class="footer__sector">Industria Cárnica</span></li>
+          <li><span class="footer__sector">Farmacéuticas</span></li>
+          <li><span class="footer__sector">Cocinas Industriales</span></li>
+          <li><span class="footer__sector">Procesadoras de Mariscos</span></li>
+          <li><span class="footer__sector">Zonas Francas</span></li>
         </ul>
       </div>
 
@@ -196,6 +192,25 @@ const base = import.meta.env.BASE_URL;
 
   a.footer__contact-item:hover {
     color: #ffffff;
+  }
+
+  .footer__sector {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.55);
+    padding: var(--space-1) 0;
+  }
+
+  .footer__sector::before {
+    content: "";
+    display: block;
+    width: 5px;
+    height: 5px;
+    min-width: 5px;
+    border-radius: 50%;
+    background-color: var(--color-accent);
   }
 
   /* Columnas */

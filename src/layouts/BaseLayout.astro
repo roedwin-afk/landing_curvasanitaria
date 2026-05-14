@@ -107,6 +107,8 @@ const canonicalURL = Astro.url.href;
 
         --container-max: 1200px;
         --section-padding: clamp(4rem, 8vw, 7rem);
+
+        --navbar-height: 72px;
     }
 
     *,
@@ -121,7 +123,7 @@ const canonicalURL = Astro.url.href;
         scroll-behavior: smooth;
         -webkit-text-size-adjust: 100%;
         scroll-padding-top: 72px;
-        overflow-x: clip; 
+        overflow-x: clip;
     }
 
     body {
@@ -134,6 +136,9 @@ const canonicalURL = Astro.url.href;
         min-height: 100dvh;
     }
 
+    main {
+        padding-top: var(--navbar-height);
+    }
 
     img,
     video {
@@ -152,7 +157,12 @@ const canonicalURL = Astro.url.href;
         list-style: none;
     }
 
-    h1, h2, h3, h4, h5, h6 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
         color: var(--color-primary);
         font-weight: 700;
         line-height: 1.1;

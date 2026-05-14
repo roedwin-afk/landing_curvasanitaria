@@ -17,11 +17,26 @@ import ImagenHero from "../../assets/images/CO100-1.png";
         >
           <rect width="20" height="14" fill="#0073CF"></rect>
           <rect y="4.67" width="20" height="4.67" fill="#FFFFFF"></rect>
-          <g fill="#0073CF">
-            <polygon
-              points="10,5.5 10.4,6.7 11.7,6.7 10.7,7.4 11.1,8.6 10,7.9 8.9,8.6 9.3,7.4 8.3,6.7 9.6,6.7"
-            ></polygon>
-          </g>
+          <!-- Estrella superior izquierda -->
+          <polygon
+            points="7,4.2 7.2,4.8 7.8,4.8 7.3,5.2 7.5,5.8 7,5.4 6.5,5.8 6.7,5.2 6.2,4.8 6.8,4.8"
+            fill="#0073CF"></polygon>
+          <!-- Estrella superior derecha -->
+          <polygon
+            points="13,4.2 13.2,4.8 13.8,4.8 13.3,5.2 13.5,5.8 13,5.4 12.5,5.8 12.7,5.2 12.2,4.8 12.8,4.8"
+            fill="#0073CF"></polygon>
+          <!-- Estrella central -->
+          <polygon
+            points="10,6.2 10.2,6.8 10.8,6.8 10.3,7.2 10.5,7.8 10,7.4 9.5,7.8 9.7,7.2 9.2,6.8 9.8,6.8"
+            fill="#0073CF"></polygon>
+          <!-- Estrella inferior izquierda -->
+          <polygon
+            points="7,8.2 7.2,8.8 7.8,8.8 7.3,9.2 7.5,9.8 7,9.4 6.5,9.8 6.7,9.2 6.2,8.8 6.8,8.8"
+            fill="#0073CF"></polygon>
+          <!-- Estrella inferior derecha -->
+          <polygon
+            points="13,8.2 13.2,8.8 13.8,8.8 13.3,9.2 13.5,9.8 13,9.4 12.5,9.8 12.7,9.2 12.2,8.8 12.8,8.8"
+            fill="#0073CF"></polygon>
         </svg>
         Distribución en todo Honduras
       </div>
@@ -89,6 +104,7 @@ import ImagenHero from "../../assets/images/CO100-1.png";
     background: linear-gradient(160deg, #f8fafc 0%, #ffffff 60%);
     padding-block: clamp(5rem, 10vw, 9rem);
     overflow: clip;
+    padding-block-start: clamp(3rem, 8vw, 7rem);
   }
 
   .hero::before {
