@@ -47,7 +47,7 @@ export const products: Product[] = [
       "Cocinas industriales B2B",
       "Laboratorios farmacéuticos",
     ],
-    cta: "Cotizar CO100 en Honduras",
+    cta: "Conocer mas sobre CO100",
     metaTitle:
       "Curva Sanitaria CO100 PVC Honduras | EQUIPROH San Pedro Sula",
     metaDescription:
@@ -81,7 +81,7 @@ export const products: Product[] = [
       "Plantas de procesamiento",
       "Instalaciones con desmontaje frecuente",
     ],
-    cta: "Solicitar Ficha Técnica COPF 100",
+    cta: "Conocer mas sobre COPF 100",
     metaTitle:
       "Base de Soporte COPF 100 para Curva Sanitaria | EQUIPROH Honduras",
     metaDescription:
@@ -116,7 +116,7 @@ export const products: Product[] = [
       "Uniones pared-pared-piso",
       "Cámaras de alta exigencia higiénica",
     ],
-    cta: "Solicitar Precio RIN-51223",
+    cta: "Conocer mas sobre RIN-51223",
     metaTitle:
       "Rinconera Interna 3P RIN-51223 PVC Honduras | EQUIPROH",
     metaDescription:
@@ -151,7 +151,7 @@ export const products: Product[] = [
       "Plantas con circulación de montacargas",
       "Protección en corredores industriales",
     ],
-    cta: "Ver Disponibilidad CO2VE 100",
+    cta: "Conocer mas sobre CO2VE 100",
     metaTitle:
       "Esquinero Externo CO2VE 100 PVC Honduras | EQUIPROH",
     metaDescription:
@@ -184,7 +184,7 @@ export const products: Product[] = [
       "Sellos de extremo en cuartos fríos",
       "Acabados en puertas y ventanas industriales",
     ],
-    cta: "Consultar Stock TAP-47379",
+    cta: "Conocer mas sobre TAP-47379",
     metaTitle:
       "Tapeta de Terminación TAP-47379 para Perfil 100mm | EQUIPROH Honduras",
     metaDescription:
