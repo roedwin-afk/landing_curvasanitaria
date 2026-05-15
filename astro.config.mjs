@@ -9,4 +9,9 @@ export default defineConfig({
   base: BASE,
   output: "static",
   integrations: [sitemap()],
+  vite: {
+    build: {
+      cssCodeSplit: false, // une los CSS en uno solo
+    }
+  }
 });
