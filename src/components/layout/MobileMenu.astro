@@ -5,7 +5,7 @@ import NavLinks from '../ui/NavLinks.astro';
 import logo from "../../assets/images/logo-equiproh.svg";
 ---
 
-<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+<div class="mobile-menu" id="mobile-menu">
   <div class="mobile-menu__overlay" id="menu-overlay"></div>
 
   <nav class="mobile-menu__panel" aria-label="Menú móvil">
@@ -48,13 +48,14 @@ import logo from "../../assets/images/logo-equiproh.svg";
     function openMenu() {
       mobileMenu?.classList.add('is-open');
       mobileMenu?.setAttribute('aria-hidden', 'false');
-      document.documentElement.style.overflow = 'hidden'; // ← html, no body
+      burgerBtn?.setAttribute('aria-expanded', 'true');   // ✅ añadido
+      document.documentElement.style.overflow = 'hidden';
     }
 
     function closeMenu() {
       mobileMenu?.classList.remove('is-open');
       mobileMenu?.setAttribute('aria-hidden', 'true');
-      document.documentElement.style.overflow = ''; // ← html, no body
+      document.documentElement.style.overflow = '';
       burgerBtn?.classList.remove('is-active');
       burgerBtn?.setAttribute('aria-expanded', 'false');
     }
